@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 一、配置数据库连接信息 -->
+	<!--targetRuntime=“MyBatis3“可以生成带条件的增删改查 -->
+	<!--targetRuntime=“MyBatis3Simple“可以生成基本的增删改查 -->
+	<context id="mysql" targetRuntime="MyBatis3Simple">
+		<!--去除注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!-- 设置需要连接的数据库的表，数据库账号和密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/springdemo" userId="root"
+			password="root">
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- 二、指定实体类生成的位置 -->
+		<javaModelGenerator targetPackage="com.xzy.model"
+			targetProject="src">
+			<property name="enableSubPackages" value="true" />
+		</javaModelGenerator>
+		<!-- 三、指定映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="src">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!-- 四、指定 dao 接口生成的位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.xzy.dao" targetProject="src">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		<!-- 五、table 指定每个表的生成策略 -->
+		<!--配置要逆向解析的数据表，tableName 对应表名，domainObjectName 对应实体类的名称 -->
+		<table tableName="employee" domainObjectName="Employee"></table>
+	</context>
+</generatorConfiguration>
